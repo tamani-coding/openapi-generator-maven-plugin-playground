@@ -1,0 +1,104 @@
+openapi: '3.0.3'
+servers:
+  - url: http://localhost:8080/user
+info:
+  version: 1.0.0
+  title: User API
+paths:
+  /get/{id}:
+    summary: Get a User
+    get:
+      tags:
+        - User
+      summary: Get a User
+      operationId: getUser
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: User Id
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /create:
+    summary: Creates a User
+    post:
+      tags:
+        - User
+      summary: Creates a User
+      operationId: createUser
+      requestBody:
+        description: A user to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /update:
+    summary: Updates a User
+    put:
+      tags:
+        - User
+      summary: Updates a User
+      operationId: updateUser
+      requestBody:
+        description: A user to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /delete/{id}:
+    summary: Deletes a User
+    delete:
+      tags:
+        - User
+      summary: Deletes a User
+      operationId: deleteUser
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  schemas:
+    User:
+      required:
+        - nickname
+      properties:
+        id:
+          type: string
+          format: uuid
+        nickname:
+          type: string
+        dateTime:
+          type: string
+          format: date-time
